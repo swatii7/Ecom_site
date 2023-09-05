@@ -1,84 +1,75 @@
-import React, { useState } from 'react'
-import headerLogo from '../../assets/Navbar/Logo/header_logo.svg'
-import AppBar from '@mui/material/AppBar';
-import { styled, alpha } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
+import Autocomplete from '@mui/material/Autocomplete';
+import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import SearchIcon from '@mui/icons-material/Search';
-import Tooltip from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import TextField from '@mui/material/TextField';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import React, { useState } from 'react';
+import headerLogo from '../../assets/Navbar/Logo/header_logo.svg';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import accountIcon from '../../assets/Navbar/Icons/NavIcons/account.svg'
+import wishlistIcon from '../../assets/Navbar/Icons/NavIcons/wishlist.svg'
+import cartIcon from '../../assets/Navbar/Icons/NavIcons/cart.svg'
+import compareIcon from '../../assets/Navbar/Icons/NavIcons/compare.svg'
+import Badge from '@mui/material/Badge';
+// import { withStyles } from "@material-ui/core/styles";  
 
 
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
-    width: 'auto',
-  },
-}));
+// const styles = theme => ({
+//   margin: {
+//     margin: theme.spacing.unit * 2
+//   },
+//   customBadge: {
+//     backgroundColor: "#00AFD7",
+//     color: "white"
+//   }
+// }); 
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
+function Header(props) {
+  const { classes } = props;
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
-}));
+  const categories = [
+    'All categories',
+    'Computers Accessories',
+    'Cell Phones',
+    'Gaming Gadgets',
+    'Smart watches',
+    'Wired Headphone',
+    'Mouse Keyboard',
+    'Headphone',
+    'Bluetooth devices',
+    'Cloud Software',
+  ];
 
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-
-function Header() {
-
-         
+  const pages = ['Products', 'Pricing', 'Blog'];
+  const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
     const [anchorElNav, setAnchorElNav] = useState('')
     const [anchorElUser, setAnchorElUser] = useState('')
-  
-    const handleOpenNavMenu = (event) => {
-      setAnchorElNav(event.currentTarget);
-    };
-    const handleOpenUserMenu = (event) => {
-      setAnchorElUser(event.currentTarget);
-    };
-  
-    const handleCloseNavMenu = () => {
-      setAnchorElNav(null);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [filterText, setFilterText] = useState('');
+    const [selectedItem, setSelectedItem] = useState('All Categories')
+
+    
+    const handleDropdownClick = () => {
+      setIsDropdownOpen(!isDropdownOpen);
     };
   
-    const handleCloseUserMenu = () => {
-      setAnchorElUser(null);
+
+    const handleInputChange = (event) => {
+      setFilterText(event.target.value.toUpperCase());
     };
+
+    const selectCategory = (category) => {
+      setSelectedItem(category);
+      setIsDropdownOpen(false);
+    };
+
+    
     return (
     <div position="static" className='blueColor'>
       <Container maxWidth="xl">
@@ -91,7 +82,7 @@ function Header() {
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleOpenNavMenu}
+              onClick={(event)=>setAnchorElNav(event.currentTarget)}
               color="inherit"
             >
               <MenuIcon />
@@ -109,58 +100,85 @@ function Header() {
                 horizontal: 'left',
               }}
               open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+              onClose={()=> setAnchorElNav(null)}
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={page} onClick={()=> setAnchorElNav(null)}>
                   <Typography textAlign="center" className='blueColor'>{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
          
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search> 
+          <Autocomplete
+      disablePortal
+      id="combo-box-demo"
+      options={categories}
+      sx={{ width: 300 }}
+      value={selectedItem}
+      onChange={(event, newValue) => {
+        if (newValue === null) {
+          setSelectedItem('All categories');
+        } else {
+          setSelectedItem(newValue);
+        }
+      }}
+     
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          // label="Category"
+          variant="outlined"
+          value={selectedItem}
+          onChange={handleInputChange}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          InputProps={{
+            ...params.InputProps,
+          }}
+          
+        />
+      )}
+      disableClearable
+    />
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+
+<Stack direction="row" spacing={2}>
+
+      <Button startIcon={<img src={accountIcon} />}>
+        Account
+      </Button>
+      
+      <div>
+<Badge badgeContent={4} color='primary'>
+<img src={wishlistIcon} />  
+    </Badge>
+    <span className='ml-20'>Wishlist</span>
+</div>
+
+<div>
+<Badge badgeContent={4} color='primary'>
+<img src={cartIcon} />  
+
+    </Badge>
+    <span className='ml-20'>Cart</span>
+</div>
+     
+      <Button startIcon={<img src={compareIcon} />}>
+      Compare
+      </Button>
+
+
+     
+    </Stack>
+
+
+   
+
         </Toolbar>
       </Container>
     </div>
