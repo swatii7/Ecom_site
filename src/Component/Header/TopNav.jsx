@@ -14,6 +14,7 @@ import flagEn from "../../assets/Navbar/Logo/flag-en.svg";
 import flagEsp from '../../assets/Navbar/Logo/flag-es.svg';
 import flagFran from '../../assets/Navbar/Logo/flag-fr.svg';
 import flagPort from '../../assets/Navbar/Logo/flag-pt.svg';
+import '../../Stylesheet/Header/Header.css'
 
 
 const pages = ["About Us", "Careers", "Open a Shop"];
