@@ -15,9 +15,9 @@ import AccountMenu from './CustomMenu/AccountMenu';
 import CartMenu from './CustomMenu/CartMenu';
 import NavDropdown from './CustomMenu/NavDropdown';
 import {useMediaQuery, useTheme } from '@mui/material';
-// import MenuIcon from "@mui/icons-material/Menu";
-import { createTheme } from '@mui/material/styles';
+import MenuIcon from '../../assets/Navbar/Icons/NavIcons/menuIcon.svg'
 import Box from "@mui/material/Box";
+import { display } from '@mui/system';
 
 
 function Navbar() {
@@ -114,13 +114,16 @@ function Navbar() {
     setIsDropdownOpen(false);
   };
 
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
 
   return (
 
 
     <div position="static" className='blueColor navHeader'>
       <Box sx={{ flexGrow: 1 }}>
-        <Grid container spacing={2} className='ml-60'>
+        <Grid container spacing={2} pl-50>
           <Grid item xs={3}>
             <div style={{ display: 'flex' }}>
               <img src={headerLogo} />
@@ -175,20 +178,7 @@ function Navbar() {
                 </div>
               </div>
             </div>
-          </Grid>
-          <div style={{ display: isSmallScreen ? 'flex' : 'none' }}>
-         {/* <MenuIcon /> */}
-
-          <NavDropdown tablist={homeTabs} label='Home' />
-                <NavDropdown tablist={shopTabs} label='Shop' />
-                <NavDropdown tablist={vendorTabs} label='Vendors' />
-                <NavDropdown tablist={pagesTabs} label='Pages' />
-                <NavDropdown tablist={BlogTabs} label='Blogs' />
-                <div className='pt-25 blueColor fs-16 fw-500'>
-                  <span>Contact Us</span>
-                </div>
-          </div>
-          
+          </Grid>    
           <Grid item xs={4} className='justify-start'>
           <div>
       <Stack direction="row" spacing={2} className='pt-0 pr-15 pb-0  cursor-pointer alignCenter lh-24'>
@@ -215,11 +205,25 @@ function Navbar() {
         </Button>
       </Stack>
     </div>
-    
-
           </Grid>
-        </Grid>
+         <div style={{ display: isSmallScreen ? 'block' : 'none' }}>
+       <img src={MenuIcon} alt='icon-img' onClick={toggleDropdown} />
+       {isDropdownOpen &&
+        <div>
+        <NavDropdown tablist={homeTabs} label='Home' />
+              <NavDropdown tablist={shopTabs} label='Shop' />
+              <NavDropdown tablist={vendorTabs} label='Vendors' />
+              <NavDropdown tablist={pagesTabs} label='Pages' />
+              <NavDropdown tablist={BlogTabs} label='Blogs' />
+              <div className='pt-25 blueColor fs-16 fw-500'>
+                <span>Contact Us</span>
+              </div>
+              </div>
+       }
+      
+          </div>
         
+        </Grid>
       </Box>
     </div>
   )
