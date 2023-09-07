@@ -4,36 +4,9 @@ import ImageOne from "../../../assets/Navbar/Icons/NavListIcons/laptop.png"
 import ImageTwo from "../../../assets/Navbar/Icons/NavListIcons/headphones.png"
 import Menu from '@mui/material/Menu';
 import Divider from '@mui/material/Divider';
-import Paper from '@mui/material/Paper';
-import makeStyles from '@mui/styles/makeStyles';
-
-const useStyles = makeStyles((theme) => ({
-    customPaperRoot: {
-      backgroundColor: "#fff",  
-      color: "rgba(0, 0, 0, 0.87)",
-      position: "absolute",
-      overflowY: "auto",
-      overflowX: "hidden",
-      minWidth: "16px",
-      minHeight: "16px",
-      maxWidth: "calc(100% - 32px)",
-      maxHeight: "calc(100% - 32px)",
-      outline: "0",
-      border: "1px solid #D5DFE4 !important",
-      borderRadius: "0 0 4px 4px !important",
-      top: "116px !important",
-      zIndex: "99",
-      width: "200px",
-      padding: "22px 22px 0px 22px",
-      transition: "all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1)",
-      boxShadow: "none !important",
-    },
-  }));
 
 
   function CartMenu({icon,buttonLabel }) {
-
-    const classes = useStyles();
 
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
@@ -47,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
     };
 
     return (
-        <Paper classes={{ root: classes.customPaperRoot }}>
         <div>
         <div
           style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
@@ -87,7 +59,6 @@ const useStyles = makeStyles((theme) => ({
         </Menu>
         </div>
       </div>
-       </Paper>
     )
 }
 

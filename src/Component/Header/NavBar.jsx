@@ -1,28 +1,29 @@
-import MenuIcon from '@mui/icons-material/Menu';
 import Autocomplete from '@mui/material/Autocomplete';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import IconButton from '@mui/material/IconButton';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import TextField from '@mui/material/TextField';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import React, { useState } from 'react';
-import headerLogo from '../../assets/Navbar/Logo/header_logo.svg';
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-import accountIcon from '../../assets/Navbar/Icons/NavIcons/account.svg'
-import wishlistIcon from '../../assets/Navbar/Icons/NavIcons/wishlist.svg'
-import cartIcon from '../../assets/Navbar/Icons/NavIcons/cart.svg'
-import compareIcon from '../../assets/Navbar/Icons/NavIcons/compare.svg'
 import Badge from '@mui/material/Badge';
-import '../../Stylesheet/Header/Header.css'
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+import React, { useState } from 'react';
+import '../../Stylesheet/Header/Header.css';
+import accountIcon from '../../assets/Navbar/Icons/NavIcons/account.svg';
+import cartIcon from '../../assets/Navbar/Icons/NavIcons/cart.svg';
+import compareIcon from '../../assets/Navbar/Icons/NavIcons/compare.svg';
+import wishlistIcon from '../../assets/Navbar/Icons/NavIcons/wishlist.svg';
+import headerLogo from '../../assets/Navbar/Logo/header_logo.svg';
 import AccountMenu from './CustomMenu/AccountMenu';
 import CartMenu from './CustomMenu/CartMenu';
+import NavDropdown from './CustomMenu/NavDropdown';
+import {useMediaQuery, useTheme } from '@mui/material';
+// import MenuIcon from "@mui/icons-material/Menu";
+import { createTheme } from '@mui/material/styles';
+import Box from "@mui/material/Box";
 
 
 function Navbar() {
+
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   const categories = [
     'All categories',
@@ -37,10 +38,63 @@ function Navbar() {
     'Cloud Software',
   ];
 
+  const homeTabs = [
+    'Homepage - 1',
+    'Homepage - 2',
+    'Homepage - 3',
+    'Homepage - 4',
+    'Homepage - 5',
+    'Homepage - 6',
+    'Homepage - 7',
+    'Homepage - 8',
+    'Homepage - 9',
+    'Homepage - 10'
+  ]
+
+  const shopTabs = [
+    'Shop Grid',
+    'Shop Grid 2',
+    'Shop list - Left sidebar',
+    'Shop list - Right sidebar',
+    'Shop Fullwidth',
+    'Single Product',
+    'Single Product 2',
+    'Single Product 3',
+    'Single Product 4',
+    'Shop Cart',
+    'Shop Checkout',
+    'Shop Compare',
+    'Shop Wishlist'
+  ]
+
+  const vendorTabs = [
+    'Vendors Listing',
+    'Vendor Single'
+  ]
+
+  const pagesTabs = [
+    'About Us',
+    'Contact Us',
+    'Careers',
+    'Term and Condition',
+    'Register',
+    'Login',
+    'Error 404'
+  ]
+
+  const BlogTabs = [
+    'Blog - No Sidebar',
+    'Blog - Right Sidebar',
+    'Blog List',
+    'Blog category big',
+    'Blog Single - Left sidebar',
+    'Blog Single - No sidebar'
+  ]
+
   const accountList = ['My Account', 'Order Tracking', 'My Orders', 'My Wishlist', 'Setting', 'Sign out']
 
-  const pages = ['Products', 'Pricing', 'Blog'];
-  const [anchorElNav, setAnchorElNav] = useState('')
+  // const pages = ['Products', 'Pricing', 'Blog'];
+  // const [anchorElNav, setAnchorElNav] = useState('')
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [filterText, setFilterText] = useState('');
   const [selectedItem, setSelectedItem] = useState('All Categories')
@@ -62,113 +116,111 @@ function Navbar() {
 
 
   return (
+
+
     <div position="static" className='blueColor navHeader'>
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <img src={headerLogo} />
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={(event) => setAnchorElNav(event.currentTarget)}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={() => setAnchorElNav(null)}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={() => setAnchorElNav(null)}>
-                  <Typography className='blueColor textCenter'>{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-
-          <Autocomplete
-            disablePortal
-            id="combo-box-demo"
-            options={categories}
-            sx={{ width: 300 }}
-            value={selectedItem}
-            onChange={(event, newValue) => {
-              if (newValue === null) {
-                setSelectedItem('All categories');
-              } else {
-                setSelectedItem(newValue);
-              }
-            }}
-
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                // label="Category"
-                variant="outlined"
-                value={selectedItem}
-                onChange={handleInputChange}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                InputProps={{
-                  ...params.InputProps,
-                }}
-
-              />
-            )}
-            disableClearable
-          />
-
-          <div>
-
-          </div>
-
-
-          <Stack direction="row" spacing={2} className='pt-0 pr-15 pb-0 pl-30 cursor-pointer alignCenter lh-24'>
+      <Box sx={{ flexGrow: 1 }}>
+        <Grid container spacing={2} className='ml-60'>
+          <Grid item xs={3}>
             <div style={{ display: 'flex' }}>
-              <AccountMenu buttonLabel="Account" menuItems={accountList} icon={<img src={accountIcon} />} />
-            </div>
+              <img src={headerLogo} />
+              <div>
+                <Autocomplete
+                  disablePortal
+                  id="combo-box-demo"
+                  options={categories}
+                  sx={{ width: 300 }}
+                  value={selectedItem}
+                  onChange={(event, newValue) => {
+                    if (newValue === null) {
+                      setSelectedItem('All categories');
+                    } else {
+                      setSelectedItem(newValue);
+                    }
+                  }}
 
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      // label="Category"
+                      variant="outlined"
+                      value={selectedItem}
+                      onChange={handleInputChange}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      InputProps={{
+                        ...params.InputProps,
+                      }}
+
+                    />
+                  )}
+                  disableClearable
+                />
+              </div>
+
+            </div>
+          </Grid>
+          <Grid item xs={5}>
             <div>
-              <Badge badgeContent={5} color='primary'>
-                <img src={wishlistIcon} />
-              </Badge>
-              <span className='ml-5 navButton'>Wishlist</span>
+           
+              <div style={{ display: isSmallScreen ? 'none' : 'flex' }}>
+                <NavDropdown tablist={homeTabs} label='Home' />
+                <NavDropdown tablist={shopTabs} label='Shop' />
+                <NavDropdown tablist={vendorTabs} label='Vendors' />
+                <NavDropdown tablist={pagesTabs} label='Pages' />
+                <NavDropdown tablist={BlogTabs} label='Blogs' />
+                <div className='pt-25 blueColor fs-16 fw-500'>
+                  <span>Contact Us</span>
+                </div>
+              </div>
             </div>
+          </Grid>
+          <div style={{ display: isSmallScreen ? 'flex' : 'none' }}>
+         {/* <MenuIcon /> */}
 
-            <div style={{ display: 'flex' }}>
-              <Badge badgeContent={2} color='primary'>
-                <img src={cartIcon} />
+          <NavDropdown tablist={homeTabs} label='Home' />
+                <NavDropdown tablist={shopTabs} label='Shop' />
+                <NavDropdown tablist={vendorTabs} label='Vendors' />
+                <NavDropdown tablist={pagesTabs} label='Pages' />
+                <NavDropdown tablist={BlogTabs} label='Blogs' />
+                <div className='pt-25 blueColor fs-16 fw-500'>
+                  <span>Contact Us</span>
+                </div>
+          </div>
+          
+          <Grid item xs={4} className='justify-start'>
+          <div>
+      <Stack direction="row" spacing={2} className='pt-0 pr-15 pb-0  cursor-pointer alignCenter lh-24'>
+        <div style={{ display: isSmallScreen ? 'none' : 'flex' }}>
+          <AccountMenu buttonLabel="Account" menuItems={accountList} icon={<img src={accountIcon} />} />
+        </div>
 
-              </Badge>
-             <CartMenu buttonLabel="Cart" />
-            </div>
+        <div style={{ display: isSmallScreen ? 'none' : 'block' }}>
+          <Badge badgeContent={5} color='primary'>
+            <img src={wishlistIcon} />
+          </Badge>
+          <span className='ml-5 blueColor fs-16 fw-500 navButton'>Wishlist</span>
+        </div>
 
-            <Button className='blueColor fs-16 fw-400 navButton' startIcon={<img src={compareIcon} />}>
-              Compare
-            </Button>
-          </Stack>
+        <div style={{ display: isSmallScreen ? 'none' : 'flex' }}>
+          <Badge badgeContent={2} color='primary'>
+            <img src={cartIcon} />
+          </Badge>
+          <CartMenu buttonLabel="Cart" blueColor fs-18 fw-500 />
+        </div>
 
-        </Toolbar>
-      </Container>
+        <Button className='blueColor fs-16 fw-500 navButton' startIcon={<img src={compareIcon} />}>
+          Compare
+        </Button>
+      </Stack>
+    </div>
+    
+
+          </Grid>
+        </Grid>
+        
+      </Box>
     </div>
   )
 }

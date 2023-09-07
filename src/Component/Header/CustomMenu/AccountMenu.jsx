@@ -50,7 +50,7 @@ export default function ReusableMenu({ buttonLabel, menuItems, icon }) {
         className='blueColor fs-16 fw-400 text-Capitalize navButton'
       >
         {icon}
-        <span style={{ marginLeft: '8px' }}>{buttonLabel}</span>
+        <span className="fs-16 fw-500" style={{ marginLeft: '8px' }}>{buttonLabel}</span>
       </div>
       <Menu
         id="basic-menu"

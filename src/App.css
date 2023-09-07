@@ -266,6 +266,14 @@
   margin-left: 50px !important;
 }
 
+.ml-55{
+  margin-left: 55px !important;
+}
+
+.ml-60{
+  margin-left: 60px !important;
+}
+
 /*margin right custom classes*/
 
 .mr-0 {
@@ -364,43 +372,43 @@
   padding: 0 !important;
 }
 
-.p-5px {
+.p-5 {
   padding: 5px !important;
 }
 
-.p-10px {
+.p-10 {
   padding: 10px !important;
 }
 
-.p-15px {
+.p-15 {
   padding: 15px !important;
 }
 
-.p-20px {
+.p-20 {
   padding: 20px !important;
 }
 
-.p-25px {
+.p-25 {
   padding: 25px !important;
 }
 
-.p-30px {
+.p-30 {
   padding: 30px !important;
 }
 
-.p-35px {
+.p-35 {
   padding: 35px !important;
 }
 
-.p-40px {
+.p-40 {
   padding: 40px !important;
 }
 
-.p-45px {
+.p-45 {
   padding: 45px !important;
 }
 
-.p-50px {
+.p-50 {
   padding: 50px !important;
 }
 
@@ -410,43 +418,43 @@
   padding-top: 0 !important;
 }
 
-.pt-5px {
+.pt-5 {
   padding-top: 5px !important;
 }
 
-.pt-10px {
+.pt-10 {
   padding-top: 10px !important;
 }
 
-.pt-15px {
+.pt-15 {
   padding-top: 15px !important;
 }
 
-.pt-20px {
+.pt-20 {
   padding-top: 20px !important;
 }
 
-.pt-25px {
+.pt-25 {
   padding-top: 25px !important;
 }
 
-.pt-30px {
+.pt-30 {
   padding-top: 30px !important;
 }
 
-.pt-35px {
+.pt-35 {
   padding-top: 35px !important;
 }
 
-.pt-40px {
+.pt-40 {
   padding-top: 40px !important;
 }
 
-.pt-45px {
+.pt-45 {
   padding-top: 45px !important;
 }
 
-.pt-50px {
+.pt-50 {
   padding-top: 50px !important;
 }
 
@@ -456,43 +464,43 @@
   padding-right: 0 !important;
 }
 
-.pr-5px {
+.pr-5 {
   padding-right: 5px !important;
 }
 
-.pr-10px {
+.pr-10 {
   padding-right: 10px !important;
 }
 
-.pr-15px {
+.pr-15 {
   padding-right: 15px !important;
 }
 
-.pr-20px {
+.pr-20 {
   padding-right: 20px !important;
 }
 
-.pr-25px {
+.pr-25 {
   padding-right: 25px !important;
 }
 
-.pr-30px {
+.pr-30 {
   padding-right: 30px !important;
 }
 
-.pr-35px {
+.pr-35 {
   padding-right: 35px !important;
 }
 
-.pr-40px {
+.pr-40 {
   padding-right: 40px !important;
 }
 
-.pr-45px {
+.pr-45 {
   padding-right: 45px !important;
 }
 
-.pr-50px {
+.pr-50 {
   padding-right: 50px !important;
 }
 
@@ -502,43 +510,43 @@
   padding-left: 0 !important;
 }
 
-.pl-5px {
+.pl-5 {
   padding-left: 5px !important;
 }
 
-.pl-10px {
+.pl-10 {
   padding-left: 10px !important;
 }
 
-.pl-15px {
+.pl-15 {
   padding-left: 15px !important;
 }
 
-.pl-20px {
+.pl-20 {
   padding-left: 20px !important;
 }
 
-.pl-25px {
+.pl-25 {
   padding-left: 25px !important;
 }
 
-.pl-30px {
+.pl-30 {
   padding-left: 30px !important;
 }
 
-.pl-35px {
+.pl-35 {
   padding-left: 35px !important;
 }
 
-.pl-40px {
+.pl-40 {
   padding-left: 40px !important;
 }
 
-.pl-45px {
+.pl-45 {
   padding-left: 45px !important;
 }
 
-.pl-50px {
+.pl-50 {
   padding-left: 50px !important;
 }
 
@@ -550,6 +558,10 @@
   line-height: 24px !important;
 }
 
+
+.justify-start{
+  justify-content: start !important;
+}
 .cursor-pointer{
   cursor: pointer !important;
 }
